@@ -6,38 +6,36 @@ import android.os.Parcelable;
 /**
  * Created by roberasd on 08/03/16.
  */
-public class PersonModel implements Parcelable {
+public class UserModel implements Parcelable {
     int id;
     String name;
     String lastName;
     int age;
-    String country;
     String email;
     String password;
 
-    public PersonModel (){
+    public UserModel(){
 
     }
 
-    protected PersonModel(Parcel in) {
+    protected UserModel(Parcel in) {
         id = in.readInt();
         name = in.readString();
         lastName = in.readString();
         age = in.readInt();
-        country = in.readString();
         email = in.readString();
         password = in.readString();
     }
 
-    public static final Creator<PersonModel> CREATOR = new Creator<PersonModel>() {
+    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
         @Override
-        public PersonModel createFromParcel(Parcel in) {
-            return new PersonModel(in);
+        public UserModel createFromParcel(Parcel in) {
+            return new UserModel(in);
         }
 
         @Override
-        public PersonModel[] newArray(int size) {
-            return new PersonModel[size];
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
         }
     };
 
@@ -73,14 +71,6 @@ public class PersonModel implements Parcelable {
         this.age = age;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -108,7 +98,6 @@ public class PersonModel implements Parcelable {
         dest.writeString(name);
         dest.writeString(lastName);
         dest.writeInt(age);
-        dest.writeString(country);
         dest.writeString(email);
         dest.writeString(password);
     }

@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.roberasd.sqliteandroid.R;
 import com.roberasd.sqliteandroid.database.UsersDAO;
-import com.roberasd.sqliteandroid.models.PersonModel;
+import com.roberasd.sqliteandroid.models.UserModel;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity  {
         findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PersonModel model = usersDAO.getUser(emailLogin.getText().toString(), passwordLogin.getText().toString());
+                UserModel model = usersDAO.getUser(emailLogin.getText().toString(), passwordLogin.getText().toString());
                 if(model != null){
 
                     Intent intent =  new Intent(MainActivity.this, HomeActivity.class);

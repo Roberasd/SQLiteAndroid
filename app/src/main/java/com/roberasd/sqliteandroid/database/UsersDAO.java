@@ -4,7 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.roberasd.sqliteandroid.models.PersonModel;
+import com.roberasd.sqliteandroid.models.UserModel;
+
+import java.util.ArrayList;
 
 /**
  * Created by roberasd on 05/04/16.
@@ -17,7 +19,6 @@ public class UsersDAO {
     public static String LAST_NAME = "last_name";
     public static String AGE = "age";
     public static String EMAIL = "email";
-    public static String COUNTRY = "country";
     public static String PASSWORD = "password";
 
     private DBAdapter mDBAdapter;
@@ -26,44 +27,57 @@ public class UsersDAO {
     }
 
 
-    public long insertUser(PersonModel model){
+    public long insertUser(UserModel model){
         ContentValues contentValues = new ContentValues();
         contentValues.put(NAME, model.getName());
         contentValues.put(LAST_NAME, model.getLastName());
         contentValues.put(AGE, model.getAge());
         contentValues.put(EMAIL, model.getEmail());
-        contentValues.put(COUNTRY, model.getCountry());
         contentValues.put(PASSWORD, model.getPassword());
 
         return mDBAdapter.insert(TABLE_NAME_USER, contentValues);
     }
 
-    public PersonModel getUser(String email, String pass){
-        PersonModel personModel = new PersonModel();
-        String[] fields = {ID, NAME, LAST_NAME, AGE, EMAIL, COUNTRY, PASSWORD};
+    public UserModel getUser(String email, String pass){
+        UserModel userModel = new UserModel();
+        String[] fields = {ID, NAME, LAST_NAME, AGE, EMAIL, PASSWORD};
         String condition = EMAIL  + " = " + "'" + email + "' AND '" + pass + "'";
         mDBAdapter.open();
         Cursor cursor = mDBAdapter.getData(TABLE_NAME_USER, fields, condition);
         cursor.moveToFirst();
 
-        /*int id = cursor.getColumnIndex(ID);
-        int name = cursor.getColumnIndex(NAME);
-        int lastName = cursor.getColumnIndex(LAST_NAME);
-        int age = cursor.getColumnIndex(AGE);
-        int emailAddress = cursor.getColumnIndex(EMAIL);
-        int country = cursor.getColumnIndex(COUNTRY);
-        int password = cursor.getColumnIndex(PASSWORD);*/
+        userModel.setId(cursor.getColumnIndex(ID));
+        userModel.setName(cursor.getString(cursor.getColumnIndex(NAME)));
+        userModel.setLastName(cursor.getString(cursor.getColumnIndex(LAST_NAME)));
+        userModel.setAge(cursor.getInt(cursor.getColumnIndex(AGE)));
+        userModel.setEmail(cursor.getString(cursor.getColumnIndex(EMAIL)));
+        userModel.setPassword(cursor.getString(cursor.getColumnIndex(PASSWORD)));
 
-        personModel.setId(cursor.getColumnIndex(ID));
-        personModel.setName(cursor.getString(cursor.getColumnIndex(NAME)));
-        personModel.setLastName(cursor.getString(cursor.getColumnIndex(LAST_NAME)));
-        personModel.setAge(cursor.getInt(cursor.getColumnIndex(AGE)));
-        personModel.setEmail(cursor.getString(cursor.getColumnIndex(EMAIL)));
-        personModel.setCountry(cursor.getString(cursor.getColumnIndex(COUNTRY)));
-        personModel.setPassword(cursor.getString(cursor.getColumnIndex(PASSWORD)));
+        return userModel;
 
-        return personModel;
+    }
 
+    public ArrayList<UserModel> getAllUsers(){
+        ArrayList<UserModel> userModelArrayList = new ArrayList<>();
+        String[] fields = {ID, NAME, LAST_NAME, AGE, EMAIL, PASSWORD};
+        mDBAdapter.open();
+        Cursor cursor = mDBAdapter.getData(TABLE_NAME_USER, fields, null);
+        cursor.moveToFirst();
+
+        for(int i = 0; i < cursor.getCount(); i++){
+            UserModel userModel = new UserModel();
+
+            userModel.setId(cursor.getColumnIndex(ID));
+            userModel.setName(cursor.getString(cursor.getColumnIndex(NAME)));
+            userModel.setLastName(cursor.getString(cursor.getColumnIndex(LAST_NAME)));
+            userModel.setAge(cursor.getInt(cursor.getColumnIndex(AGE)));
+            userModel.setEmail(cursor.getString(cursor.getColumnIndex(EMAIL)));
+            userModel.setPassword(cursor.getString(cursor.getColumnIndex(PASSWORD)));
+
+            userModelArrayList.add(userModel);
+        }
+
+        return userModelArrayList;
     }
 
     public boolean isRegistered(String email){

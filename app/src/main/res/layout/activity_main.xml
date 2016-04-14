@@ -64,7 +64,7 @@
         <data>
             <variable
                 name="person"
-                type="com.roberasd.sqliteandroid.models.PersonModel"/>
+                type="com.roberasd.sqliteandroid.models.UserModel>
         </data>
 
         <LinearLayout

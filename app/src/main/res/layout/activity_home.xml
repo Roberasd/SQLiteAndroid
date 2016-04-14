@@ -2,60 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:gravity="center_vertical|center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.roberasd.sqliteandroid.activities.HomeActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:id="@+id/person_name"
-        android:text="Person name"
-        android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:text="Bienvenido"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:id="@+id/person_last_name"
-        android:text="Person last name"
-        android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/person_email"
+            android:text="Person email"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"/>
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:id="@+id/person_age"
-        android:text="Person age"
-        android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:id="@+id/person_country"
-        android:text="Person country"
-        android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        android:id="@+id/person_email"
-        android:text="Person email"
-        android:textSize="18dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/person_name"
+            android:text="Name"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"/>
+
+        <TextView
+            android:id="@+id/person_last_name"
+            android:text="Person last name"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"/>
+
+        <TextView
+            android:id="@+id/person_age"
+            android:text="Person age"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_of_all_users"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

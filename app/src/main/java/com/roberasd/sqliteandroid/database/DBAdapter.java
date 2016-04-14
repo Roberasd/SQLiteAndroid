@@ -26,7 +26,6 @@ public class DBAdapter {
             + UsersDAO.LAST_NAME + " TEXT, "
             + UsersDAO.AGE + " NUMERIC, "
             + UsersDAO.EMAIL + " TEXT, "
-            + UsersDAO.COUNTRY + " TEXT,"
             + UsersDAO.PASSWORD + " TEXT);";
 
     public DBAdapter(Context context) {
